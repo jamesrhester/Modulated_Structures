@@ -5660,7 +5660,7 @@ save_atom_sites_ortho.coeff_sin_list
       vector list given by _atom_sites_ortho.wave_vector_seq_id_list
 ;
     _name.category_id            atom_sites_ortho
-    _name.object_id              coeff_sin
+    _name.object_id              coeff_sin_list
     _type.purpose                Number
     _type.source                 Assigned
     _type.container              List
