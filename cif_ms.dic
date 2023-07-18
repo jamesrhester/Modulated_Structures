@@ -7449,7 +7449,7 @@ save_cell_wave_vectors.meas_details
     _name.category_id            cell_wave_vectors
     _name.object_id              meas_details
     _type.purpose                Describe
-    _type.source                 Asd
+    _type.source                 Assigned
     _type.container              Single
     _type.contents               Text
 
