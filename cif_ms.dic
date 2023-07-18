@@ -399,8 +399,8 @@ save_atom_site_displace_Fourier_param.cos
       cosine coefficient (Ac) corresponding to the Fourier term defined
       _atom_site_displace_Fourier.atom_site_label,
       _atom_site_displace_Fourier.axis and
-      _atom_site_displace_Fourier.wave_vector.seq_id. Atomic or rigid-
-      group displacements must be expressed as fractions of the unit
+      _atom_site_displace_Fourier.wave_vector.seq_id. Atomic or rigid-group
+      displacements must be expressed as fractions of the unit
       cell or in angstroms if the modulations are referred to some
       special axes defined by the items belonging to the ATOM_SITES_AXES 
       category, through _atom_site_displace_Fourier.matrix_seq_id.
@@ -479,8 +479,8 @@ save_atom_site_displace_Fourier_param.modulus
       Fourier term defined by
       _atom_site_displace_Fourier.atom_site_label,
       _atom_site_displace_Fourier.axis and
-      _atom_site_displace_Fourier.wave_vector_seq_id. Atomic or rigid-
-      group displacements must be expressed as fractions of the unit
+      _atom_site_displace_Fourier.wave_vector_seq_id. Atomic or rigid-group
+      displacements must be expressed as fractions of the unit
       cell or in angstroms if the modulations are referred to some
       special axes defined by the items belonging to the ATOM_SITES_AXES 
       category, through _atom_site_displace_Fourier.matrix_seq_id.
@@ -579,8 +579,8 @@ save_atom_site_displace_Fourier_param.sin
       sine coefficient (As) corresponding to the Fourier term defined
       _atom_site_displace_Fourier.atom_site_label,
       _atom_site_displace_Fourier.axis, and
-      _atom_site_displace_Fourier.wave_vector_seq_id. Atomic or rigid-
-      group displacements must be expressed as fractions of the unit
+      _atom_site_displace_Fourier.wave_vector_seq_id. Atomic or rigid-group
+      displacements must be expressed as fractions of the unit
       cell or in angstroms if the modulations are referred to some
       special axes defined by
       the items belonging to the ATOM_SITES_AXES 
@@ -5365,9 +5365,9 @@ save_atom_sites_modulation.global_phase_list
                   & Garcia Arribas, A. (1987). Acta Cryst. A43, 216-226. 
                   On the structure and symmetry of incommensurate phases. 
                   A practical formulation 
-                  Smaalen, S. van(1995). Crystallogr. Rev. 4, 79-202.
+                  Smaalen, S. van (1995). Crystallogr. Rev. 4, 79-202.
                   Incommensurate crystal structures
-                  Smaalen, S. van(2012). 
+                  Smaalen, S. van (2012). 
                   Incommensurate Crystallography. Oxford University Press.
 ;
     _name.category_id            atom_sites_modulation
@@ -6039,7 +6039,7 @@ save_cell_subsystem.matrix_W
                   Smaalen, S. van (1995). 
                   Crystallogr. Rev. 4, 79-202.
                   Incommensurate crystal structures
-                  Smaalen, S. van(2012). 
+                  Smaalen, S. van (2012). 
                   Incommensurate Crystallography. Oxford University Press.
 
 ;
