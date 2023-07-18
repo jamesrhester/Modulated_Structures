@@ -8501,7 +8501,7 @@ save_exptl_crystal_face.index_m_list
     _name.object_id              index_m_list
     _type.purpose                Number
     _type.source                 Assigned
-    _type.container              Single
+    _type.container              List
     _type.contents               Integer
     _type.dimension              '[8]'
     loop_
