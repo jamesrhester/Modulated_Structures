@@ -738,7 +738,7 @@ save_atom_site_displace_Legendre.coeff
       _atom_site_displace_Legendre.axis and _atom_site_displace_Legendre.order.  
       Atomic or rigid-group displacements must be expressed as fractions 
       of the unit cell or in angstroms if the modulations are referred to some
-      special axes defined by defined by the items belonging to the 
+      special axes defined by the items belonging to the
       ATOM_SITES_AXES category, through _atom_site_rot_Legendre.matrix_seq_id.
 ;
     _name.category_id            atom_site_displace_Legendre
@@ -921,7 +921,7 @@ save_atom_site_displace_ortho.coeff
       _atom_site_displace_ortho.axis and _atom_site_displace_ortho.func_id.  
       Atomic or rigid-group displacements must be expressed as fractions 
       of the unit cell or in angstroms if the modulations are referred to some
-      special axes defined by defined by the items belonging to the 
+      special axes defined by the items belonging to the
       ATOM_SITES_AXES category, through _atom_site_rot_ortho.matrix_seq_id.
 ;
     _name.category_id            atom_site_displace_ortho
@@ -1607,7 +1607,7 @@ save_atom_site_displace_xharm.coeff
       _atom_site_displace_xharm.axis and _atom_site_displace_xharm.order.  
       Atomic or rigid-group displacements must be expressed as fractions 
       of the unit cell or in angstroms if the modulations are referred to some
-      special axes defined by defined by the items belonging to the 
+      special axes defined by the items belonging to the
       ATOM_SITES_AXES category, through _atom_site_rot_xharm.matrix_seq_id.
 ;
     _name.category_id            atom_site_displace_xharm
@@ -3564,7 +3564,7 @@ save_ATOM_SITE_ROT_ORTHO
       Data items in the ATOM_SITE_ROT_ORTHO category record
       details about the orthogonalized functions defined to solve 
       correlation problems during the refinement of displacive 
-      modulations when the the atomic domain of a given atom is 
+      modulations when the atomic domain of a given atom is
       restricted by a crenel function. The functions are constructed 
       selecting Fourier harmonics until the desired degree of 
       orthogonality and completeness is reached (see
@@ -8756,7 +8756,7 @@ save_function.Sawtooth
                 2* a * ((x4-c)/w)
 
       for x4 belonging to the interval [c-(w/2), c+(w/2)], where a is the array
-      containing the the amplitudes (maximum displacements) along each 
+      containing the amplitudes (maximum displacements) along each
       crystallographic axis, w is the width of the sawtooth, x4 is a particular value 
       of the internal coordinate and c is the centre of the function in
       internal space. The use of this function is restricted to one-dimensional 
@@ -8837,7 +8837,7 @@ save_function.Zigzag
 
       for x4 in the interval [c+1/2-(w/2), c+1/2+(w/2)] 
 
-      where a is the array containing the the amplitudes (maximum displacements)   
+      where a is the array containing the amplitudes (maximum displacements)
       along each crystallographic axis, w is the width of the zigzag, x4 is a 
       particular value of the internal coordinate and c is the centre of the function 
       in internal space. The use of this function is restricted to one-dimensional 
