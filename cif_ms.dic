@@ -5672,7 +5672,7 @@ save_
 
 save_atom_sites_ortho.func_id
 
-    _definition.id               '_atom_sites_ortho.func_id '
+    _definition.id               '_atom_sites_ortho.func_id'
     _definition.update           2017-03-11
     _description.text                   
 ;
