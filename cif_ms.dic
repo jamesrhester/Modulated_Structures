@@ -1,5 +1,5 @@
 #\#CIF_2.0
-###############################################################################
+################################################################################
 #                                                                              #
 #                   CIF Dictionary for Modulated Structures                    #
 #                   ---------------------------------------                    #
@@ -645,7 +645,6 @@ save_ATOM_SITE_DISPLACE_LEGENDRE
       only include the translational part of the modulation. The rotational 
       part would appear in a separate list of items belonging to the
       ATOM_SITE_ROT_LEGENDRE category.
-.
 
       References: Petricek, V., Van Der Lee & Evain, M. (1995).
                   Acta Cryst. A51, 529-535. DOI 10.1107/S0108767395000365
@@ -2775,7 +2774,7 @@ save_ATOM_SITE_OCC_XHARM
       Data items in the ATOM_SITE_OCC_XHARM category record details about 
       the x-harmonics used to describe the occupational modulations when 
       the atomic domain of a given atom or rigid group is restricted by 
-      a crenel function. T
+      a crenel function.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_OCC_XHARM
@@ -3143,7 +3142,7 @@ save_ATOM_SITE_ROT_FOURIER_PARAM
       a given rigid group. The translational part would appear in a
       separate list of items belonging to the
       ATOM_SITE_DISPLACE_FOURIER_PARAM category. The Fourier components
-      are defined in the parent category ATOM_SITE_ROT_FOURIER Notice 
+      are defined in the parent category ATOM_SITE_ROT_FOURIER. Notice 
       that items in this category may be listed together with those of the 
       ATOM_SITE_DISPLACE_FOURIER category.
 ;
