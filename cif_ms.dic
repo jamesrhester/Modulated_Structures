@@ -5196,7 +5196,7 @@ save_ATOM_SITES_AXES
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITES_AXES
     loop_
-      _category_key.name         '_atom_site_sites_axes.matrix_seq_id'
+      _category_key.name         '_atom_sites_axes.matrix_seq_id'
 save_
 
 save_atom_sites_axes.matrix
