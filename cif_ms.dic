@@ -49,7 +49,7 @@ save_MS_GROUP
 ;
     _name.category_id            CIF_MS
     _name.object_id              MS_GROUP
-    _import.get                  [{"file":"cif_core.dic" "save":"CIF_CORE" "mode":"Full"}]
+    _import.get                  [{"file":"cif_core.dic" "save":"CIF_CORE" "mode":"Full" "dupl":"Ignore"}]
 
 save_
 
@@ -644,7 +644,9 @@ save_ATOM_SITE_DISPLACE_LEGENDRE
       by a Crenel function. In the case of rigid groups, items in this category would 
       only include the translational part of the modulation. The rotational 
       part would appear in a separate list of items belonging to the
-      ATOM_SITE_ROT_LEGENDRE category.
+      ATOM_SITE_ROT_LEGENDRE category. The coefficients of each Legendre function  
+      belong to the category ATOM_SITE_DISPLACE_LEGENDRE_PARAM and are listed 
+      separately.
 .
 
       References: Petricek, V., Van Der Lee & Evain, M. (1995).
@@ -812,6 +814,81 @@ save_atom_site_displace_Legendre.order
 
 save_
 
+save_ATOM_SITE_DISPLACE_LEGENDRE_PARAM
+
+    _definition.id               ATOM_SITE_DISPLACE_LEGENDRE_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_DISPLACE_LEGENDRE_PARAM category
+      record details about the coefficients of the Legendre polynomials
+      functions defined in ATOM_SITE_DISPLACE_LEGENDRE and used to 
+      describe the displacive modulation of an atom or rigid group. 
+      In the case of rigid groups, items in this category would
+      only include the translational part of the modulation. The
+      rotational part would appear in a separate list of items
+      belonging to the ATOM_SITE_ROT_LEGENDRE_PARAM category. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_DISPLACE_LEGENDRE_PARAM
+    loop_
+      _category_key.name         '_atom_site_displace_Legendre_param.id'
+
+save_
+
+### JRH Notes: is there any reason to have this as a separate category
+### if there is a one-to-one relationship between the id of this category
+### and the id of the parent category?
+
+save_atom_site_displace_Legendre_param.coeff
+
+    _definition.id               '_atom_site_displace_Legendre_param.coeff'
+    _definition.update           2017-09-28
+    _description.text                   
+;
+
+      The coefficient corresponding to the Legendre function 
+      defined by _atom_site_displace_Legendre.atom_site_label,
+      _atom_site_displace_Legendre.axis and _atom_site_displace_Legendre.order.  
+      Atomic or rigid-group displacements must be expressed as fractions 
+      of the unit cell or in angstroms if the modulations are referred to some
+      special axes defined by defined by the items belonging to the 
+      ATOM_SITES_AXES category, through _atom_site_rot_Legendre.matrix_seq_id.
+;
+    _name.category_id            atom_site_displace_Legendre_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+
+save_
+
+save_atom_site_displace_Legendre_param.id
+
+    _definition.id               '_atom_site_displace_Legendre_param.id'
+    _definition.update           2017-09-28
+    _description.text                   
+;
+
+      A code identifying the coefficient of each Legendre polynomial describing the displacive
+      modulation of a given atom or rigid group. In the case of a rigid
+      group, it applies only to the translational part of the
+      distortion. This code must match _atom_site_displace_Legendre.id.
+;
+    _name.category_id            atom_site_displace_Legendre_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_displace_Legendre.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
 
 save_ATOM_SITE_DISPLACE_ORTHO
 
@@ -833,7 +910,9 @@ save_ATOM_SITE_DISPLACE_ORTHO
       In the case of rigid groups, items in this category would only 
       include the translational part of the modulation. The rotational 
       part would appear in a separate list of items belonging to the
-      ATOM_SITE_ROT_ORTHO category. 
+      ATOM_SITE_ROT_ORTHO category. The coefficients of each 
+      orthogonalized function belong to the category
+      ATOM_SITE_DISPLACE_ORTHO_PARAM and are listed separately.
 
       Notice that the global results could also be expressed (losing 
       information) using the data items defined in the categories 
@@ -993,6 +1072,80 @@ save_atom_site_displace_ortho.matrix_seq_id
     _name.category_id            atom_site_displace_ortho
     _name.object_id              matrix_seq_id
     _name.linked_item_id         '_atom_sites_axes.matrix_seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
+
+save_ATOM_SITE_DISPLACE_ORTHO_PARAM
+
+    _definition.id               ATOM_SITE_DISPLACE_ORTHO_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_DISPLACE_ORTHO_PARAM category
+      record details about the coefficients of the orthogonolized
+      functions defined in ATOM_SITE_DISPLACE_ORTHO and used to 
+      describe the displacive modulation of an atom or rigid group. 
+      In the case of rigid groups, items in this category would
+      only include the translational part of the modulation. The
+      rotational part would appear in a separate list of items
+      belonging to the ATOM_SITE_ROT_ORTHO_PARAM category. 
+
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_DISPLACE_ORTHO_PARAM
+    loop_
+      _category_key.name         '_atom_site_displace_ortho_param.id'
+
+save_
+
+save_atom_site_displace_ortho_param.coeff
+
+    _definition.id               '_atom_site_displace_ortho_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient corresponding to the orthogonalized function 
+      Defined by _atom_site_displace_ortho.atom_site_label,
+      _atom_site_displace_ortho.axis and _atom_site_displace_ortho.func_id.  
+      Atomic or rigid-group displacements must be expressed as fractions 
+      of the unit cell or in angstroms if the modulations are referred to some
+      special axes defined by defined by the items belonging to the 
+      ATOM_SITES_AXES category, through _atom_site_rot_ortho.matrix_seq_id.
+;
+    _name.category_id            atom_site_displace_ortho_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+
+save_
+
+save_atom_site_displace_ortho_param.id
+
+    _definition.id               '_atom_site_displace_ortho_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each term present in the 
+      series of orthogonalized functions describing the displacive
+      modulation of a given atom or rigid group. In the case of a rigid
+      group, it applies only to the translational part of the
+      distortion. This code must match _atom_site_displace_ortho.id.
+;
+    _name.category_id            atom_site_displace_ortho_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_displace_ortho.id'
     _type.purpose                Link
     _type.source                 Related
     _type.container              Single
@@ -1259,6 +1412,7 @@ save_atom_site_displace_special_func.sawtooth_ay
             atom_site_displace_special_func.sawtooth_ay = s.sawtooth_axyz[1]
 ; 
 
+
 save_
 
 
@@ -1432,9 +1586,104 @@ save_atom_site_displace_special_func.zigzag_axyz
     _type.contents               Real
     _type.dimension              '[3]'
     _enumeration.default         [0.0 0.0 0.0]
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  s  as  atom_site_displace_special_func
+            atom_site_displace_special_func.zigzag_axyz = 
+                              [ s.zigzag_ax, s.zigzag_ay, s.zigzag_az ]
+; 
 
 save_
 
+save_atom_site_displace_special_func.zigzag_ax
+
+    _definition.id               '_atom_site_displace_special_func.zigzag_ax'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+    The amplitude (maximum displacement) along the a (or a1) axis of the 
+    zigzag function described in _atom_site_displace_special_func.zigzag
+;
+    _name.category_id            atom_site_displace_special_func
+    _name.object_id              zigzag_ax
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  s  as  atom_site_displace_special_func
+
+            atom_site_displace_special_func.zigzag_ax = s.zigzag_axyz[0]
+; 
+
+save_
+
+save_atom_site_displace_special_func.zigzag_ay
+
+    _definition.id               '_atom_site_displace_special_func.zigzag_ay'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+    The amplitude (maximum displacement) along the b (or a2) axis of the 
+    zigzag function described in _atom_site_displace_special_func.zigzag
+;
+    _name.category_id            atom_site_displace_special_func
+    _name.object_id              zigzag_ay
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  s  as  atom_site_displace_special_func
+
+            atom_site_displace_special_func.zigzag_ay = s.zigzag_axyz[1]
+; 
+
+save_
+
+save_atom_site_displace_special_func.zigzag_az
+
+    _definition.id               '_atom_site_displace_special_func.zigzag_az'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+    The amplitude (maximum displacement) along the c (or a3) axis of the 
+    zigzag function described in _atom_site_displace_special_func.zigzag
+;
+    _name.category_id            atom_site_displace_special_func
+    _name.object_id              zigzag_az
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  s  as  atom_site_displace_special_func
+
+            atom_site_displace_special_func.zigzag_az = s.zigzag_axyz[2]
+; 
+
+save_
 
 save_atom_site_displace_special_func.zigzag_c
 
@@ -1514,7 +1763,9 @@ save_ATOM_SITE_DISPLACE_XHARM
       atomic domain of a given atom is restricted by a crenel function. In the case 
       of rigid groups, items in this category would only include the translational 
       part of the modulation. The rotational part would appear in a separate list of 
-      items belonging to the ATOM_SITE_ROT_XHARM category. 
+      items belonging to the ATOM_SITE_ROT_XHARM category. The coefficients of each 
+      x-harmonic function belong to the category ATOM_SITE_DISPLACE_XHARM_PARAM and 
+      are listed separately.
 
       References: Petricek, V., Van Der Lee & Evain, M. (1995).
                   Acta Cryst. A51, 529-535. DOI 10.1107/S0108767395000365
@@ -1682,6 +1933,77 @@ save_atom_site_displace_xharm.order
 
 save_
 
+save_ATOM_SITE_DISPLACE_XHARM_PARAM
+
+    _definition.id               ATOM_SITE_DISPLACE_XHARM_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_DISPLACE_XHARM_PARAM category
+      record details about the coefficients of the x-harmonic functions
+      functions defined in ATOM_SITE_DISPLACE_XHARM and used to 
+      describe the displacive modulation of an atom or rigid group. 
+      In the case of rigid groups, items in this category would
+      only include the translational part of the modulation. The
+      rotational part would appear in a separate list of items
+      belonging to the ATOM_SITE_ROT_XHARM_PARAM category. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_DISPLACE_XHARM_PARAM
+    loop_
+      _category_key.name         '_atom_site_displace_xharm_param.id'
+
+save_
+
+save_atom_site_displace_xharm_param.coeff
+
+    _definition.id               '_atom_site_displace_xharm_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient corresponding to the x-harmonic function 
+      defined by _atom_site_displace_xharm.atom_site_label,
+      _atom_site_displace_xharm.axis and _atom_site_displace_xharm.order.  
+      Atomic or rigid-group displacements must be expressed as fractions 
+      of the unit cell or in angstroms if the modulations are referred to some
+      special axes defined by defined by the items belonging to the 
+      ATOM_SITES_AXES category, through _atom_site_rot_xharm.matrix_seq_id.
+;
+    _name.category_id            atom_site_displace_xharm_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+
+save_
+
+save_atom_site_displace_xharm_param.id
+
+    _definition.id               '_atom_site_displace_xharm_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each x-harmonic function 
+      describing the displacive modulation of a given atom or rigid group. 
+      In the case of a rigid group, it applies only to the translational 
+      part of the distortion. This code must match _atom_site_displace_xharm.id.
+;
+    _name.category_id            atom_site_displace_xharm_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_displace_xharm.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
 
 save_ATOM_SITE_FOURIER_WAVE_VECTOR
 
@@ -1786,7 +2108,19 @@ save_atom_site_Fourier_wave_vector.q_coeff
     _type.contents               Integer
     _type.dimension              '[]'
     _enumeration.default         [0]
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+            temp.q_coeff = [m.q1_coeff, m.q2_coeff, m.q3_coeff, m.q4_coeff,
+                            m.q5_coeff, m.q6_coeff, m.q7_coeff, m.q8_coeff]
 
+#Not meaningful coefficients are removed here
+      atom_site_Fourier_wave_vector.q_coeff = 
+                               temp.q_coeff[0:_cell_modulation_dimension-1]
+; 
 save_
 
 save_atom_site_Fourier_wave_vector.q_coeff_seq_id
@@ -1811,7 +2145,22 @@ save_atom_site_Fourier_wave_vector.q_coeff_seq_id
     _type.container              List
     _type.contents               Code
     _type.dimension              '[]'
-    _enumeration.default         [1] 
+    _enumeration.default         [1]
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+            temp.q_coeff_seq_id = [m.q1_coeff_seq_id, m.q2_coeff_seq_id, 
+                                   m.q3_coeff_seq_id, m.q4_coeff_seq_id,
+                                   m.q5_coeff_seq_id, m.q6_coeff_seq_id, 
+                                   m.q7_coeff_seq_id, m.q8_coeff_seq_id]
+
+#Not meaningful identifiers are removed here
+      atom_site_Fourier_wave_vector.q_coeff_seq_id = 
+                               temp.q_coeff_seq_id[0:_cell_modulation_dimension-1]
+; 
 
 save_
 
@@ -2000,8 +2349,482 @@ save_atom_site_Fourier_wave_vector.z
             atom_site_Fourier_wave_vector.z   =   m.xyz[ 2 ]
 ; 
 
+save_
+
+###
+### JRH: Do we need all of the coefficients if they never existed originally?
+###
+save_atom_site_Fourier_wave_vector.q1_coeff
+    _definition.id               '_atom_site_Fourier_wave_vector.q1_coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Wave vectors of the Fourier terms used in the structural model
+      to describe the atomic modulation functions, expressed with
+      respect to the three-dimensional reciprocal basis that spans
+      the lattice of main reflections. They are linear combinations
+      with integer coefficients of the independent wave vectors given
+      in the _cell_wave_vector. list. Therefore, a generic Fourier wave
+      vector is expressed as k=n(1)q(1)+...+n(p)q(p), where p is given
+      by _cell_modulation_dimension. In the case of composites
+      described in a single data block, these wave vectors are
+      expressed with respect to the three-dimensional reciprocal
+      basis of each subsystem (see _cell_subsystem.matrix_W_*).
+      _atom_site_Fourier_wave_vector.q1_coeff contains the integer coefficient     
+      of the contribution of the first independent wave vector to the above
+      linear combination. The enumeration of the involved independent 
+      wave vectors (1,2, ...) is given by the value of 
+      _atom_site_Fourier_wave_vecto_.q1_coeff_seq_id matching the 
+      corresponding value of _cell_wave_vector.seq_id.  
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q1_coeff
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Integer
+    _enumeration.default         0
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+            atom_site_Fourier_wave_vector.q1_coeff   =   m.q_coeff[ 0 ]
+; 
 
 save_
+
+save_atom_site_Fourier_wave_vector.q1_coeff_seq_id
+    _definition.id               '_atom_site_Fourier_wave_vector.q1_coeff_seq_id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the first independent wave vector, q(1), in 
+      the linear combination that expresses a generic Fourier wave
+      vector as k=n(1)q(1)+...+n(p)q(p), where p is given by
+      _cell_modulation_dimension. It must match a code given in
+      _cell_wave_vector.seq_id.
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q1_coeff_seq_id
+    _name.linked_item_id         '_cell_wave_vector.seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+    _enumeration.range           1:8
+    _enumeration.default         1
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+        atom_site_Fourier_wave_vector.q1_coeff_seq_id  =  m.q_coeff_seq_id[ 0 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q2_coeff
+    _definition.id               '_atom_site_Fourier_wave_vector.q2_coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q2_coeff
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Integer
+    _enumeration.default         0
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+            atom_site_Fourier_wave_vector.q2_coeff   =   m.q_coeff[ 1 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q2_coeff_seq_id
+    _definition.id               '_atom_site_Fourier_wave_vector.q2_coeff_seq_id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff_seq_id
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q2_coeff_seq_id
+    _name.linked_item_id         '_cell_wave_vector.seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+    _enumeration.range           1:8
+    _enumeration.default         2
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+        atom_site_Fourier_wave_vector.q2_coeff_seq_id  =  m.q_coeff_seq_id[ 1 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q3_coeff
+    _definition.id               '_atom_site_Fourier_wave_vector.q3_coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q3_coeff
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Integer
+    _enumeration.default         0
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+            atom_site_Fourier_wave_vector.q3_coeff   =   m.q_coeff[ 2 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q3_coeff_seq_id
+    _definition.id               '_atom_site_Fourier_wave_vector.q3_coeff_seq_id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff_seq_id
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q3_coeff_seq_id
+    _name.linked_item_id         '_cell_wave_vector.seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+    _enumeration.range           1:8
+    _enumeration.default         3
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+        atom_site_Fourier_wave_vector.q3_coeff_seq_id  =  m.q_coeff_seq_id[ 2 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q4_coeff
+    _definition.id               '_atom_site_Fourier_wave_vector.q4_coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q4_coeff
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Integer
+    _enumeration.default         0
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+            atom_site_Fourier_wave_vector.q4_coeff   =   m.q_coeff[ 3 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q4_coeff_seq_id
+    _definition.id               '_atom_site_Fourier_wave_vector.q4_coeff_seq_id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff_seq_id
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q4_coeff_seq_id
+    _name.linked_item_id         '_cell_wave_vector.seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+    _enumeration.range           1:8
+    _enumeration.default         4
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+        atom_site_Fourier_wave_vector.q4_coeff_seq_id  =  m.q_coeff_seq_id[ 3 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q5_coeff
+    _definition.id               '_atom_site_Fourier_wave_vector.q5_coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q5_coeff
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Integer
+    _enumeration.default         0
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+            atom_site_Fourier_wave_vector.q5_coeff   =   m.q_coeff[ 4 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q5_coeff_seq_id
+    _definition.id               '_atom_site_Fourier_wave_vector.q5_coeff_seq_id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff_seq_id
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q5_coeff_seq_id
+    _name.linked_item_id         '_cell_wave_vector.seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+    _enumeration.range           1:8
+    _enumeration.default         5
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+        atom_site_Fourier_wave_vector.q5_coeff_seq_id  =  m.q_coeff_seq_id[ 4 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q6_coeff
+    _definition.id               '_atom_site_Fourier_wave_vector.q6_coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q6_coeff
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Integer
+    _enumeration.default         0
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+            atom_site_Fourier_wave_vector.q6_coeff   =   m.q_coeff[ 5 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q6_coeff_seq_id
+    _definition.id               '_atom_site_Fourier_wave_vector.q6_coeff_seq_id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff_seq_id
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q6_coeff_seq_id
+    _name.linked_item_id         '_cell_wave_vector.seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+    _enumeration.range           1:8
+    _enumeration.default         6
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+        atom_site_Fourier_wave_vector.q6_coeff_seq_id  =  m.q_coeff_seq_id[ 5 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q7_coeff
+    _definition.id               '_atom_site_Fourier_wave_vector.q7_coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q7_coeff
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Integer
+    _enumeration.default         0
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+            atom_site_Fourier_wave_vector.q7_coeff   =   m.q_coeff[ 6 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q7_coeff_seq_id
+    _definition.id               '_atom_site_Fourier_wave_vector.q7_coeff_seq_id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff_seq_id
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q7_coeff_seq_id
+    _name.linked_item_id         '_cell_wave_vector.seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+    _enumeration.range           1:8
+    _enumeration.default         7
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+        atom_site_Fourier_wave_vector.q7_coeff_seq_id  =  m.q_coeff_seq_id[ 6 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q8_coeff
+    _definition.id               '_atom_site_Fourier_wave_vector.q8_coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q8_coeff
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Integer
+    _enumeration.default         0
+loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+            atom_site_Fourier_wave_vector.q8_coeff   =   m.q_coeff[ 7 ]
+;
+
+save_
+
+save_atom_site_Fourier_wave_vector.q8_coeff_seq_id
+    _definition.id               '_atom_site_Fourier_wave_vector.q8_coeff_seq_id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      See the definition of _atom_site_Fourier_wave_vector.q1_coeff_seq_id
+;
+    _name.category_id            atom_site_Fourier_wave_vector
+    _name.object_id              q8_coeff_seq_id
+    _name.linked_item_id         '_cell_wave_vector.seq_id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+    _enumeration.range           1:8
+    _enumeration.default         8
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+
+;
+       With  m  as  atom_site_Fourier_wave_vector
+
+        atom_site_Fourier_wave_vector.q8_coeff_seq_id  =  m.q_coeff_seq_id[ 7 ]
+;
+
+save_
+
 
 save_ATOM_SITE_OCC_FOURIER
 
@@ -2345,7 +3168,9 @@ save_ATOM_SITE_OCC_LEGENDRE
       Data items in the ATOM_SITE_OCC_LEGENDRE category record
       details about the Legendre polynomials used to describe the occupational 
       modulations when the atomic domain of a given atom or rigid group is 
-      restricted  by a crenel function. 
+      restricted  by a crenel function. The coefficients of each Legendre 
+      function belong to the category ATOM_SITE_OCC_LEGENDRE_PARAM and 
+      are listed separately.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_OCC_LEGENDRE
@@ -2440,6 +3265,68 @@ save_atom_site_occ_Legendre.order
 
 save_
 
+save_ATOM_SITE_OCC_LEGENDRE_PARAM
+
+    _definition.id               ATOM_SITE_OCC_LEGENDRE_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_OCC_LEGENDRE_PARAM category
+      record details about the coefficients of the Legendre
+      functions defined in ATOM_SITE_OCC_LEGENDRE and used to 
+      describe the occupational modulation of an atom or rigid group. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_OCC_LEGENDRE_PARAM
+    loop_
+      _category_key.name         '_atom_site_occ_Legendre_param.id'
+
+save_
+
+save_atom_site_occ_Legendre_param.coeff
+
+    _definition.id               '_atom_site_occ_Legendre_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient corresponding to the Legendre polynomial describing 
+      the occupational modulation of a given atom or rigid group.  
+;
+    _name.category_id            atom_site_occ_Legendre_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+
+save_
+
+save_atom_site_occ_Legendre_param.id
+
+    _definition.id               '_atom_site_occ_Legendre_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each Legendre polynomial 
+      describing the occupational modulation of a given atom or rigid 
+      group. This code must match _atom_site_occ_Legendre.id.
+;
+    _name.category_id            atom_site_occ_Legendre_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_occ_Legendre.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
+
 save_ATOM_SITE_OCC_ORTHO
 
     _definition.id               ATOM_SITE_OCC_ORTHO
@@ -2457,6 +3344,8 @@ save_ATOM_SITE_OCC_ORTHO
       Fourier harmonics until the desired degree of orthogonality and
       completeness is reached (see
       _atom_site_occ_special_func.crenel_ortho_eps).
+      The coefficients of each orthogonalized function belong to the 
+      Category ATOM_SITE_OCC_ORTHO_PARAM and are listed separately.
 
       Notice that the global results could also be expressed (losing 
       information) using the data items defined in the categories  
@@ -2475,6 +3364,7 @@ save_atom_site_occ_ortho.atom_site_label
     _definition.update           2014-06-27
     _description.text                   
 ;
+
       Modulation parameters are usually looped in separate lists.
       Modulated parameters are the atom positions (displacive
       modulation), the atomic occupation (occupational modulation)
@@ -2551,6 +3441,70 @@ save_atom_site_occ_ortho.id
     _name.category_id            atom_site_occ_ortho
     _name.object_id              id
     _type.purpose                Key
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
+
+save_ATOM_SITE_OCC_ORTHO_PARAM
+
+    _definition.id               ATOM_SITE_OCC_ORTHO_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_OCC_ORTHO_PARAM category
+      record details about the coefficients of the orthogonolized
+      functions defined in ATOM_SITE_OCC_ORTHO and used to 
+      describe the occupational modulation of an atom or rigid group. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_OCC_ORTHO_PARAM
+    loop_
+      _category_key.name         '_atom_site_occ_ortho_param.id'
+
+save_
+
+save_atom_site_occ_ortho_param.coeff
+
+    _definition.id               '_atom_site_occ_ortho_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient corresponding to the orthogonalized function 
+      defined by _atom_site_occ_ortho.atom_site_label and 
+      _atom_site_occ_ortho.func_id.  
+;
+    _name.category_id            atom_site_occ_ortho_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+
+save_
+
+save_atom_site_occ_ortho_param.id
+
+    _definition.id               '_atom_site_occ_ortho_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each term present in the 
+      series of orthogonalized functions describing the occupational
+      modulation of a given atom or rigid group. This code must match 
+      _atom_site_occ_ortho.id.
+;
+    _name.category_id            atom_site_occ_ortho_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_occ_ortho.id'
+    _type.purpose                Link
     _type.source                 Related
     _type.container              Single
     _type.contents               Code
@@ -2775,7 +3729,8 @@ save_ATOM_SITE_OCC_XHARM
       Data items in the ATOM_SITE_OCC_XHARM category record details about 
       the x-harmonics used to describe the occupational modulations when 
       the atomic domain of a given atom or rigid group is restricted by 
-      a crenel function. T
+      a crenel function. The coefficients of each x-harmonic function belong 
+      to the category ATOM_SITE_OCC_XHARM_PARAM and are listed separately.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_OCC_XHARM
@@ -2846,6 +3801,67 @@ save_atom_site_occ_xharm.order
     _type.container              Single
     _type.contents               Integer
     _enumeration.range           0:
+
+save_
+
+save_ATOM_SITE_OCC_XHARM_PARAM
+
+    _definition.id               ATOM_SITE_OCC_XHARM_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_OCC_XHARM_PARAM category record details 
+      about the coefficients of the x-harmonics defined in ATOM_SITE_OCC_XHARM 
+      and used to describe the occupational modulation of an atom or rigid group. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_OCC_XHARM_PARAM
+    loop_
+      _category_key.name         '_atom_site_occ_xharm_param.id'
+
+save_
+
+save_atom_site_occ_xharm_param.coeff
+
+    _definition.id               '_atom_site_occ_xharm_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient corresponding to the x-harmonic function describing the 
+      Occupational modulation of a given atom or rigid group.
+;
+    _name.category_id            atom_site_occ_xharm_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+
+save_
+
+save_atom_site_occ_xharm_param.id
+
+    _definition.id               '_atom_site_occ_xharm_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each x-harmonic function 
+      describing the occupational modulation of a given atom or rigid group. 
+      This code must match _atom_site_occ_xharm.id.
+;
+    _name.category_id            atom_site_occ_xharm_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_occ_xharm.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
 
 save_
 
@@ -3394,7 +4410,9 @@ save_ATOM_SITE_ROT_LEGENDRE
       by a crenel function. In the case of rigid groups, items in this 
       category would only include the rotational part of the modulation. 
       The translational part would appear in a separate list of items 
-      belonging to the ATOM_SITE_DISPLACE_LEGENDRE category. 
+      belonging to the ATOM_SITE_DISPLACE_LEGENDRE category. The coefficients 
+      of each Legendre function belong to the category
+      ATOM_SITE_ROT_LEGENDRE_PARAM and are listed separately.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_ROT_LEGENDRE
@@ -3553,6 +4571,79 @@ save_atom_site_rot_Legendre.coeff
 
 save_
 
+save_ATOM_SITE_ROT_LEGENDRE_PARAM
+
+    _definition.id               ATOM_SITE_ROT_LEGENDRE_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_ROT_LEGENDRE_PARAM category
+      record details about the coefficients of the Legendre polynomials
+      functions defined in ATOM_SITE_ROT_LEGENDRE and used to 
+      describe the displacive modulation of an atom or rigid group. 
+      In the case of rigid groups, items in this category would
+      only include the rotational part of the modulation. The
+      translational part would appear in a separate list of items
+      belonging to the ATOM_SITE_DISPLACE_LEGENDRE_PARAM category. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_ROT_LEGENDRE_PARAM
+    loop_
+      _category_key.name         '_atom_site_rot_Legendre_param.id'
+
+save_
+
+save_atom_site_rot_Legendre_param.coeff
+
+    _definition.id               '_atom_site_rot_Legendre_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient corresponding to the Legendre function 
+      defined by _atom_site_rot_Legendre.atom_site_label,
+      _atom_site_rot_Legendre.axis and _atom_site_rot_Legendre.order.  
+      Atomic or rigid-group rotations must be expressed in degrees. Special 
+      axes are defined by the items belonging to the ATOM_SITES_AXES category, 
+      through _atom_site_rot_Legendre.matrix_seq_id.
+;
+    _name.category_id            atom_site_rot_Legendre_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  degrees
+
+save_
+
+save_atom_site_rot_Legendre_param.id
+
+    _definition.id               '_atom_site_rot_Legendre_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each term present in the 
+      series of Legendre functions describing the displacive
+      modulation of a given atom or rigid group. In the case of a rigid
+      group, it applies only to the rotational part of the
+      distortion. This code must match _atom_site_rot_Legendre.id.
+;
+    _name.category_id            atom_site_rot_Legendre_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_rot_Legendre.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
+
 save_ATOM_SITE_ROT_ORTHO
 
     _definition.id               ATOM_SITE_ROT_ORTHO
@@ -3571,7 +4662,11 @@ save_ATOM_SITE_ROT_ORTHO
       orthogonality and completeness is reached (see
       _atom_site_occ_special_func.crenel_ortho_eps).
       In the case of rigid groups, items in this category would only 
-      include the rotational part of the modulation. 
+      include the rotational part of the modulation. The translational 
+      part would appear in a separate list of items belonging to the
+      ATOM_SITE_DISPLACE_ORTHO category. The coefficients of each 
+      orthogonalized function belong to the category
+      ATOM_SITE_ROT_ORTHO_PARAM and are listed separately.
 
       Notice that the global results could also be expressed (losing 
       information) using the data items defined in the categories 
@@ -3735,6 +4830,80 @@ save_atom_site_rot_ortho.coeff
     _type.contents               Real
     _enumeration.default         0.0
     _units.code                  degrees
+
+save_
+
+save_ATOM_SITE_ROT_ORTHO_PARAM
+
+    _definition.id               ATOM_SITE_ROT_ORTHO_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_ROT_ORTHO_PARAM category
+      record details about the coefficients of the orthogonolized
+      functions defined in ATOM_SITE_ROT_ORTHO and used to 
+      describe the displacive modulation of an atom or rigid group. 
+      In the case of rigid groups, items in this category would
+      only include the rotational part of the modulation. The
+      translational part would appear in a separate list of items
+      belonging to the ATOM_SITE_DISPLACE_ORTHO_PARAM category. 
+
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_ROT_ORTHO_PARAM
+    loop_
+      _category_key.name         '_atom_site_rot_ortho_param.id'
+
+save_
+
+save_atom_site_rot_ortho_param.coeff
+
+    _definition.id               '_atom_site_rot_ortho_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient corresponding to the orthogonalized function 
+      defined by _atom_site_rot_ortho.atom_site_label,
+      _atom_site_rot_ortho.axis and _atom_site_rot_ortho.func_id.  
+      Atomic or rigid-group rotations must be expressed in degrees. Special 
+      axes are defined by the items belonging to the ATOM_SITES_AXES category, 
+      through _atom_site_rot_ortho.matrix_seq_id.
+;
+    _name.category_id            atom_site_rot_ortho_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  degrees
+
+save_
+
+save_atom_site_rot_ortho_param.id
+
+    _definition.id               '_atom_site_rot_ortho_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each term present in the 
+      series of orthogonalized functions describing the displacive
+      modulation of a given atom or rigid group. In the case of a rigid
+      group, it applies only to the rotational part of the
+      distortion. This code must match _atom_site_rot_ortho.id.
+;
+    _name.category_id            atom_site_rot_ortho_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_rot_ortho.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
 
 save_
 
@@ -4132,6 +5301,18 @@ save_atom_site_rot_special_func.zigzag
     _type.contents               Real
     _type.dimension              '[3]'
     _enumeration.default         [0.0 0.0 0.0]
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  r  as  atom_site_rot_special_func
+
+      atom_site_rot_special_func.zigzag =  [
+          
+         2 * [r.zigzag_ax, r.zigzag_ay, r.zigzag_az] * 
+                     (( r.zigzag_x4 - zigzag_c) / zigzag_w )]
+; 
 
 save_
 
@@ -4163,6 +5344,96 @@ save_atom_site_rot_special_func.zigzag_axyz
        With  r  as  atom_site_rot_special_func
             atom_site_rot_special_func.zigzag_axyz = 
                               [ r.zigzag_ax, r.zigzag_ay, r.zigzag_az ]
+; 
+
+save_
+
+save_atom_site_rot_special_func.zigzag_ax
+
+    _definition.id               '_atom_site_rot_special_func.zigzag_ax'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+    The amplitude (maximum displacement) along the a (or a1) axis of the 
+    zigzag function described in _atom_site_rot_special_func.zigzag
+;
+    _name.category_id            atom_site_rot_special_func
+    _name.object_id              zigzag_ax
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  degrees
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  r  as  atom_site_rot_special_func
+
+            atom_site_rot_special_func.zigzag_ax = r.zigzag_axyz[0]
+; 
+
+save_
+
+save_atom_site_rot_special_func.zigzag_ay
+
+    _definition.id               '_atom_site_rot_special_func.zigzag_ay'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+    The amplitude (maximum displacement) along the b (or a2) axis of the 
+    zigzag function described in _atom_site_rot_special_func.zigzag
+;
+    _name.category_id            atom_site_rot_special_func
+    _name.object_id              zigzag_ay
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  degrees
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  rs  as  atom_site_rot_special_func
+
+            atom_site_rot_special_func.zigzag_ay = r.zigzag_axyz[1]
+; 
+
+save_
+
+save_atom_site_rot_special_func.zigzag_az
+
+    _definition.id               '_atom_site_rot_special_func.zigzag_az'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+    The amplitude (maximum displacement) along the c (or a3) axis of the 
+    zigzag function described in _atom_site_rot_special_func.zigzag
+;
+    _name.category_id            atom_site_rot_special_func
+    _name.object_id              zigzag_az
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  degrees
+    loop_
+      _method.purpose
+      _method.expression
+       Evaluation    
+;
+       With  r  as  atom_site_rot_special_func
+
+            atom_site_rot_special_func.zigzag_az = s.zigzag_axyz[2]
 ; 
 
 save_
@@ -4225,7 +5496,9 @@ save_ATOM_SITE_ROT_XHARM
       by a crenel function. In the case of rigid groups, items in this 
       category would only include the rotational part of the modulation.
       The translational part would appear in a separate list of items 
-      belonging to the ATOM_SITE_DISPLACE_XHARM category. 
+      belonging to the ATOM_SITE_DISPLACE_XHARM category. The coefficients 
+      of each x-harmonic function belong to the category
+      ATOM_SITE_ROT_XHARM_PARAM and are listed separately.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_ROT_XHARM
@@ -4379,6 +5652,79 @@ save_atom_site_rot_xharm.order
     _type.container              Single
     _type.contents               Integer
     _enumeration.range           0:
+
+save_
+
+save_ATOM_SITE_ROT_XHARM_PARAM
+
+    _definition.id               ATOM_SITE_ROT_XHARM_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_ROT_XHARM_PARAM category
+      record details about the coefficients of the x-harmonics
+      defined in ATOM_SITE_ROT_XHARM and used to 
+      describe the displacive modulation of an atom or rigid group. 
+      In the case of rigid groups, items in this category would
+      only include the rotational part of the modulation. The
+      translational part would appear in a separate list of items
+      belonging to the ATOM_SITE_DISPLACE_XHARM_PARAM category. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_ROT_XHARM_PARAM
+    loop_
+      _category_key.name         '_atom_site_rot_xharm_param.id'
+
+save_
+
+save_atom_site_rot_xharm_param.coeff
+
+    _definition.id               '_atom_site_rot_xharm_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient corresponding to the x-harmonic function 
+      Defined by _atom_site_rot_xharm.atom_site_label,
+      _atom_site_rot_xharm.axis and _atom_site_rot_xharm.order.  
+      Atomic or rigid-group rotations must be expressed in degrees. Special 
+      axes are defined by the items belonging to the ATOM_SITES_AXES category, 
+      through _atom_site_rot_xharm.matrix_seq_id.
+;
+    _name.category_id            atom_site_rot_xharm_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  degrees
+
+save_
+
+save_atom_site_rot_xharm_param.id
+
+    _definition.id               '_atom_site_rot_xharm_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each term present in the 
+      series of x-harmonics describing the displacive modulation of a 
+      given atom or rigid group. In the case of a rigid group, it 
+      applies only to the rotational part of the distortion. This code 
+      must match _atom_site_rot_xharm.id.
+;
+    _name.category_id            atom_site_rot_xharm_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_rot_xharm.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
 
 save_
 
@@ -4763,7 +6109,9 @@ save_ATOM_SITE_U_LEGENDRE
       Data items in the ATOM_SITE_U_LEGENDRE category record
       details about the Legendre polynomials used to describe the ADP 
       modulations when the atomic domain of a given atom is 
-      restricted by a crenel function. 
+      restricted by a crenel function. The coefficients 
+      of each Legendre function belong to the category
+      ATOM_SITE_U_LEGENDRE_PARAM and are listed separately.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_U_LEGENDRE
@@ -4890,6 +6238,70 @@ save_atom_site_U_Legendre.tens_elem
 
 save_
 
+save_ATOM_SITE_U_LEGENDRE_PARAM
+
+    _definition.id               ATOM_SITE_U_LEGENDRE_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_U_LEGENDRE_PARAM category
+      record details about the coefficients of the Legendre
+      functions defined in ATOM_SITE_U_LEGENDRE and used to 
+      describe the ADP modulation of an atom. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_U_LEGENDRE_PARAM
+    loop_
+      _category_key.name         '_atom_site_U_Legendre_param.id'
+
+save_
+
+save_atom_site_U_Legendre_param.coeff
+
+    _definition.id               '_atom_site_U_Legendre_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient, in angstroms squared corresponding to the 
+      Legendre function defined by _atom_site_U_Legendre.atom_site_label,
+      _atom_site_U_Legendre.tens_elem and _atom_site_U_Legendre.order.  
+;
+    _name.category_id            atom_site_U_Legendre_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  angstrom_squared
+
+save_
+
+save_atom_site_U_Legendre_param.id
+
+    _definition.id               '_atom_site_U_Legendre_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each term present in the 
+      series of Legendre functions describing the ADP modulation 
+      of a given atom. This code must match _atom_site_U_Legendre.id.
+;
+    _name.category_id            atom_site_U_Legendre_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_U_Legendre.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
+
 save_ATOM_SITE_U_ORTHO
 
     _definition.id               ATOM_SITE_U_ORTHO
@@ -4906,7 +6318,9 @@ save_ATOM_SITE_U_ORTHO
       restricted by a crenel function. The functions are constructed 
       selecting Fourier harmonics until the desired degree of 
       orthogonality and completeness is reached (see
-      _atom_site_occ_special_func.crenel_ortho_eps). 
+      _atom_site_occ_special_func.crenel_ortho_eps). The coefficients 
+      of each orthogonalized function belong to the category
+      ATOM_SITE_U_ORTHO_PARAM and are listed separately.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_U_ORTHO
@@ -5040,6 +6454,70 @@ save_atom_site_U_ortho.tens_elem
 
 save_
 
+save_ATOM_SITE_U_ORTHO_PARAM
+
+    _definition.id               ATOM_SITE_U_ORTHO_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_U_ORTHO_PARAM category
+      record details about the coefficients of the orthogonolized
+      functions defined in ATOM_SITE_U_ORTHO and used to 
+      describe the ADP modulation of an atom. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_U_ORTHO_PARAM
+    loop_
+      _category_key.name         '_atom_site_U_ortho_param.id'
+
+save_
+
+save_atom_site_U_ortho_param.coeff
+
+    _definition.id               '_atom_site_U_ortho_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient, in angstroms squared corresponding to the 
+      orthogonalized function defined by _atom_site_U_ortho.atom_site_label,
+      _atom_site_U_ortho.tens_elem and _atom_site_U_ortho.func_id.  
+;
+    _name.category_id            atom_site_U_ortho_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  angstrom_squared
+
+save_
+
+save_atom_site_U_ortho_param.id
+
+    _definition.id               '_atom_site_U_ortho_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each term present in the 
+      series of orthogonalized functions describing the ADP modulation 
+      of a given atom. This code must match _atom_site_U_ortho.id.
+;
+    _name.category_id            atom_site_U_ortho_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_U_ortho.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
+
 save_ATOM_SITE_U_XHARM
 
     _definition.id               ATOM_SITE_U_XHARM
@@ -5052,7 +6530,9 @@ save_ATOM_SITE_U_XHARM
       Data items in the ATOM_SITE_U_XHARM category record
       details about the x-harmonics used to describe the ADP 
       modulations when the atomic domain of a given atom is 
-      restricted by a crenel function. 
+      restricted by a crenel function. The coefficients 
+      of each x-harmonic function belong to the category
+      ATOM_SITE_U_XHARM_PARAM and are listed separately.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_U_XHARM
@@ -5178,6 +6658,70 @@ save_atom_site_U_xharm.tens_elem
 
 save_
 
+save_ATOM_SITE_U_XHARM_PARAM
+
+    _definition.id               ATOM_SITE_U_XHARM_PARAM
+    _definition.scope            Category
+    _definition.class            Loop
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      Data items in the ATOM_SITE_U_XHARM_PARAM category
+      record details about the coefficients of the x-harmonics
+      defined in ATOM_SITE_U_XHARM and used to describe the ADP 
+      modulation of an atom. 
+;
+    _name.category_id            MS_GROUP
+    _name.object_id              ATOM_SITE_U_XHARM_PARAM
+    loop_
+      _category_key.name         '_atom_site_U_xharm_param.id'
+
+save_
+
+save_atom_site_U_xharm_param.coeff
+
+    _definition.id               '_atom_site_rot_U_param.coeff'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      The coefficient, in angstroms squared corresponding to the 
+      x-harmonics defined by _atom_site_U_xharm.atom_site_label,
+      _atom_site_U_xharm.tens_elem and _atom_site_U_xharm.order.  
+;
+    _name.category_id            atom_site_U_xharm_param
+    _name.object_id              coeff
+    _type.purpose                Measurand
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    _units.code                  angstrom_squared
+
+save_
+
+save_atom_site_U_xharm_param.id
+
+    _definition.id               '_atom_site_U_xharm_param.id'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A code identifying the coefficient of each term present in the 
+      series of x-harmonic functions describing the ADP modulation 
+      of a given atom. This code must match _atom_site_U_xharm.id.
+;
+    _name.category_id            atom_site_U_xharm_param
+    _name.object_id              id
+    _name.linked_item_id         '_atom_site_U_xharm.id'
+    _type.purpose                Link
+    _type.source                 Related
+    _type.container              Single
+    _type.contents               Code
+
+save_
+
 save_ATOM_SITES_AXES
 
     _definition.id               ATOM_SITES_AXES
@@ -5223,6 +6767,271 @@ save_atom_sites_axes.matrix
     _enumeration.default         [[1.0 0.0 0.0]
                                   [0.0 1.0 0.0]
                                   [0.0 0.0 1.0]]
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix =  
+          [ [d.matrix_1_1 , d.matrix_1_2 , d.matrix_1_3],
+            [d.matrix_2_1 , d.matrix_2_2 , d.matrix_2_3],
+            [d.matrix_3_1 , d.matrix_3_2 , d.matrix_3_3] ]
+ 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_1_1
+
+    _definition.id               '_atom_sites_axes.matrix_1_1'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+
+      A 3x3 matrix, A, that relates the axes used to describe the atomic 
+      or molecular displacements to the crystallographic axes of the 
+      reference structure as follows:
+                       
+                    (a1,a2,a3) = (a~r~,b~r~,c~r~) A
+      
+      The items _atom_sites_axes.matrix_ record 
+      individually each element of A. 
+
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_1_1
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         1.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_1_1 =  d.matrix[0,0] 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_1_2
+
+    _definition.id               '_atom_sites_axes.matrix_1_2'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+      See the definition of _atom_sites_axes.matrix_1_1. 
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_1_2
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_1_2 =  d.matrix[0,1] 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_1_3
+
+    _definition.id               '_atom_sites_axes.matrix_1_3'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+      See the definition of _atom_sites_axes.matrix_1_1. 
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_1_3
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_1_3 =  d.matrix[0,2] 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_2_1
+
+    _definition.id               '_atom_sites_axes.matrix_2_1'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+      See the definition of _atom_sites_axes.matrix_1_1. 
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_2_1
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_2_1 =  d.matrix[1,0] 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_2_2
+
+    _definition.id               '_atom_sites_axes.matrix_2_2'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+      See the definition of _atom_sites_axes.matrix_1_1. 
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_2_2
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         1.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_2_2 =  d.matrix[1,1] 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_2_3
+
+    _definition.id               '_atom_sites_axes.matrix_2_3'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+      See the definition of _atom_sites_axes.matrix_1_1. 
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_2_3
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_2_3 =  d.matrix[1,2] 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_3_1
+
+    _definition.id               '_atom_sites_axes.matrix_3_1'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+      See the definition of _atom_sites_axes.matrix_1_1. 
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_3_1
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_3_1 =  d.matrix[2,0] 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_3_2
+
+    _definition.id               '_atom_sites_axes.matrix_3_2'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+      See the definition of _atom_sites_axes.matrix_1_1. 
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_3_2
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_3_2 =  d.matrix[2,1] 
+; 
+
+save_
+
+save_atom_sites_axes.matrix_3_3
+
+    _definition.id               '_atom_sites_axes.matrix_3_3'
+    _definition.update           2014-06-27
+    _description.text                   
+;
+      See the definition of _atom_sites_axes.matrix_1_1. 
+;
+    _name.category_id            atom_sites_axes
+    _name.object_id              matrix_3_3
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         1.0
+    loop_
+      _method.purpose
+      _method.expression
+      Evaluation    
+;
+      With  d  as  atom_sites_axes
+
+       atom_sites_axes.matrix_3_3 =  d.matrix[2,2] 
+; 
 
 save_
 
@@ -5626,6 +7435,27 @@ save_ATOM_SITES_ORTHO
   
 save_
 
+save_atom_sites_ortho.coeff_cos
+
+    _definition.id               '_atom_sites_ortho.coeff_cos'
+    _definition.update           2017-03-11
+    _description.text                   
+;
+
+      The cosine component of each of the harmonics chosen for the
+      definition an orthogonalized function labeled by 
+      atom_site_ortho.func_id corresponding to the wave 
+      vector given by _atom_sites_ortho.wave_vector_seq_id
+;
+    _name.category_id            atom_sites_ortho
+    _name.object_id              coeff_cos
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
+save_
+
 save_atom_sites_ortho.coeff_cos_list
 
     _definition.id               '_atom_sites_ortho.coeff_cos_list'
@@ -5645,6 +7475,28 @@ save_atom_sites_ortho.coeff_cos_list
     _type.contents               Real
     _type.dimension              '[]'
     _enumeration.default         [0.0]
+
+save_
+
+save_atom_sites_ortho.coeff_sin
+
+    _definition.id               '_atom_sites_ortho.coeff_sin'
+    _definition.update           2017-03-11
+    _description.text                   
+;
+
+      The sine component of each of the harmonics chosen for the
+      definition an orthogonalized function labeled by 
+      atom_sites_ortho.func_id corresponding to the wave 
+      vector given by _atom_sites_ortho.wave_vector_seq_id
+;
+    _name.category_id            atom_sites_ortho
+    _name.object_id              coeff_sin
+    _type.purpose                Number
+    _type.source                 Assigned
+    _type.container              Single
+    _type.contents               Real
+    _enumeration.default         0.0
 
 save_
 
