@@ -49,7 +49,7 @@ save_MS_GROUP
 ;
     _name.category_id            CIF_MS
     _name.object_id              MS_GROUP
-    _import.get                  [{"file":"cif_core.dic" "save":"CIF_CORE" "mode":"Full"}]
+    _import.get                  [{"file":"cif_core.dic" "save":"CIF_CORE" "mode":"Full" "dupl":"Ignore"}]
 
 save_
 
