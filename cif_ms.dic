@@ -950,7 +950,7 @@ save_atom_site_displace_ortho.func_id
 ;
     _name.category_id            atom_site_displace_ortho
     _name.object_id              func_id
-    _name.linked_item_id         '_atom_sites_ortho.func_id '
+    _name.linked_item_id         '_atom_sites_ortho.func_id'
     _type.purpose                Link
     _type.source                 Related
     _type.container              Single
@@ -2529,7 +2529,7 @@ save_atom_site_occ_ortho.func_id
 ;
     _name.category_id            atom_site_occ_ortho
     _name.object_id              func_id
-    _name.linked_item_id         '_atom_sites_ortho.func_id '
+    _name.linked_item_id         '_atom_sites_ortho.func_id'
     _type.purpose                Link
     _type.source                 Related
     _type.container              Single
@@ -3663,7 +3663,7 @@ save_atom_site_rot_ortho.func_id
 ;
     _name.category_id            atom_site_rot_ortho
     _name.object_id              func_id
-    _name.linked_item_id         '_atom_sites_ortho.func_id '
+    _name.linked_item_id         '_atom_sites_ortho.func_id'
     _type.purpose                Link
     _type.source                 Related
     _type.container              Single
@@ -4981,7 +4981,7 @@ save_atom_site_U_ortho.func_id
 ;
     _name.category_id            atom_site_U_ortho
     _name.object_id              func_id
-    _name.linked_item_id         '_atom_sites_ortho.func_id '
+    _name.linked_item_id         '_atom_sites_ortho.func_id'
     _type.purpose                Link
     _type.source                 Related
     _type.container              Single
@@ -5196,7 +5196,7 @@ save_ATOM_SITES_AXES
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITES_AXES
     loop_
-      _category_key.name         '_atom_site_sites_axes.matrix_seq_id'
+      _category_key.name         '_atom_sites_axes.matrix_seq_id'
 save_
 
 save_atom_sites_axes.matrix
@@ -5672,7 +5672,7 @@ save_
 
 save_atom_sites_ortho.func_id
 
-    _definition.id               '_atom_sites_ortho.func_id '
+    _definition.id               '_atom_sites_ortho.func_id'
     _definition.update           2017-03-11
     _description.text                   
 ;
