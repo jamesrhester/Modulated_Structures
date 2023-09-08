@@ -1,5 +1,5 @@
 #\#CIF_2.0
-###############################################################################
+################################################################################
 #                                                                              #
 #                   CIF Dictionary for Modulated Structures                    #
 #                   ---------------------------------------                    #
@@ -399,8 +399,8 @@ save_atom_site_displace_Fourier_param.cos
       cosine coefficient (Ac) corresponding to the Fourier term defined
       _atom_site_displace_Fourier.atom_site_label,
       _atom_site_displace_Fourier.axis and
-      _atom_site_displace_Fourier.wave_vector.seq_id. Atomic or rigid-
-      group displacements must be expressed as fractions of the unit
+      _atom_site_displace_Fourier.wave_vector.seq_id. Atomic or rigid-group
+      displacements must be expressed as fractions of the unit
       cell or in angstroms if the modulations are referred to some
       special axes defined by the items belonging to the ATOM_SITES_AXES 
       category, through _atom_site_displace_Fourier.matrix_seq_id.
@@ -479,8 +479,8 @@ save_atom_site_displace_Fourier_param.modulus
       Fourier term defined by
       _atom_site_displace_Fourier.atom_site_label,
       _atom_site_displace_Fourier.axis and
-      _atom_site_displace_Fourier.wave_vector_seq_id. Atomic or rigid-
-      group displacements must be expressed as fractions of the unit
+      _atom_site_displace_Fourier.wave_vector_seq_id. Atomic or rigid-group
+      displacements must be expressed as fractions of the unit
       cell or in angstroms if the modulations are referred to some
       special axes defined by the items belonging to the ATOM_SITES_AXES 
       category, through _atom_site_displace_Fourier.matrix_seq_id.
@@ -579,8 +579,8 @@ save_atom_site_displace_Fourier_param.sin
       sine coefficient (As) corresponding to the Fourier term defined
       _atom_site_displace_Fourier.atom_site_label,
       _atom_site_displace_Fourier.axis, and
-      _atom_site_displace_Fourier.wave_vector_seq_id. Atomic or rigid-
-      group displacements must be expressed as fractions of the unit
+      _atom_site_displace_Fourier.wave_vector_seq_id. Atomic or rigid-group
+      displacements must be expressed as fractions of the unit
       cell or in angstroms if the modulations are referred to some
       special axes defined by
       the items belonging to the ATOM_SITES_AXES 
@@ -645,7 +645,6 @@ save_ATOM_SITE_DISPLACE_LEGENDRE
       only include the translational part of the modulation. The rotational 
       part would appear in a separate list of items belonging to the
       ATOM_SITE_ROT_LEGENDRE category.
-.
 
       References: Petricek, V., Van Der Lee & Evain, M. (1995).
                   Acta Cryst. A51, 529-535. DOI 10.1107/S0108767395000365
@@ -739,7 +738,7 @@ save_atom_site_displace_Legendre.coeff
       _atom_site_displace_Legendre.axis and _atom_site_displace_Legendre.order.  
       Atomic or rigid-group displacements must be expressed as fractions 
       of the unit cell or in angstroms if the modulations are referred to some
-      special axes defined by defined by the items belonging to the 
+      special axes defined by the items belonging to the
       ATOM_SITES_AXES category, through _atom_site_rot_Legendre.matrix_seq_id.
 ;
     _name.category_id            atom_site_displace_Legendre
@@ -922,7 +921,7 @@ save_atom_site_displace_ortho.coeff
       _atom_site_displace_ortho.axis and _atom_site_displace_ortho.func_id.  
       Atomic or rigid-group displacements must be expressed as fractions 
       of the unit cell or in angstroms if the modulations are referred to some
-      special axes defined by defined by the items belonging to the 
+      special axes defined by the items belonging to the
       ATOM_SITES_AXES category, through _atom_site_rot_ortho.matrix_seq_id.
 ;
     _name.category_id            atom_site_displace_ortho
@@ -1608,7 +1607,7 @@ save_atom_site_displace_xharm.coeff
       _atom_site_displace_xharm.axis and _atom_site_displace_xharm.order.  
       Atomic or rigid-group displacements must be expressed as fractions 
       of the unit cell or in angstroms if the modulations are referred to some
-      special axes defined by defined by the items belonging to the 
+      special axes defined by the items belonging to the
       ATOM_SITES_AXES category, through _atom_site_rot_xharm.matrix_seq_id.
 ;
     _name.category_id            atom_site_displace_xharm
@@ -2775,7 +2774,7 @@ save_ATOM_SITE_OCC_XHARM
       Data items in the ATOM_SITE_OCC_XHARM category record details about 
       the x-harmonics used to describe the occupational modulations when 
       the atomic domain of a given atom or rigid group is restricted by 
-      a crenel function. T
+      a crenel function.
 ;
     _name.category_id            MS_GROUP
     _name.object_id              ATOM_SITE_OCC_XHARM
@@ -3143,7 +3142,7 @@ save_ATOM_SITE_ROT_FOURIER_PARAM
       a given rigid group. The translational part would appear in a
       separate list of items belonging to the
       ATOM_SITE_DISPLACE_FOURIER_PARAM category. The Fourier components
-      are defined in the parent category ATOM_SITE_ROT_FOURIER Notice 
+      are defined in the parent category ATOM_SITE_ROT_FOURIER. Notice 
       that items in this category may be listed together with those of the 
       ATOM_SITE_DISPLACE_FOURIER category.
 ;
@@ -3565,7 +3564,7 @@ save_ATOM_SITE_ROT_ORTHO
       Data items in the ATOM_SITE_ROT_ORTHO category record
       details about the orthogonalized functions defined to solve 
       correlation problems during the refinement of displacive 
-      modulations when the the atomic domain of a given atom is 
+      modulations when the atomic domain of a given atom is
       restricted by a crenel function. The functions are constructed 
       selecting Fourier harmonics until the desired degree of 
       orthogonality and completeness is reached (see
@@ -5366,9 +5365,9 @@ save_atom_sites_modulation.global_phase_list
                   & Garcia Arribas, A. (1987). Acta Cryst. A43, 216-226. 
                   On the structure and symmetry of incommensurate phases. 
                   A practical formulation 
-                  Smaalen, S. van(1995). Crystallogr. Rev. 4, 79-202.
+                  Smaalen, S. van (1995). Crystallogr. Rev. 4, 79-202.
                   Incommensurate crystal structures
-                  Smaalen, S. van(2012). 
+                  Smaalen, S. van (2012). 
                   Incommensurate Crystallography. Oxford University Press.
 ;
     _name.category_id            atom_sites_modulation
@@ -6040,7 +6039,7 @@ save_cell_subsystem.matrix_W
                   Smaalen, S. van (1995). 
                   Crystallogr. Rev. 4, 79-202.
                   Incommensurate crystal structures
-                  Smaalen, S. van(2012). 
+                  Smaalen, S. van (2012). 
                   Incommensurate Crystallography. Oxford University Press.
 
 ;
@@ -8757,7 +8756,7 @@ save_function.Sawtooth
                 2* a * ((x4-c)/w)
 
       for x4 belonging to the interval [c-(w/2), c+(w/2)], where a is the array
-      containing the the amplitudes (maximum displacements) along each 
+      containing the amplitudes (maximum displacements) along each
       crystallographic axis, w is the width of the sawtooth, x4 is a particular value 
       of the internal coordinate and c is the centre of the function in
       internal space. The use of this function is restricted to one-dimensional 
@@ -8838,7 +8837,7 @@ save_function.Zigzag
 
       for x4 in the interval [c+1/2-(w/2), c+1/2+(w/2)] 
 
-      where a is the array containing the the amplitudes (maximum displacements)   
+      where a is the array containing the amplitudes (maximum displacements)
       along each crystallographic axis, w is the width of the zigzag, x4 is a 
       particular value of the internal coordinate and c is the centre of the function 
       in internal space. The use of this function is restricted to one-dimensional 
