@@ -9010,7 +9010,7 @@ _units.code                             degrees
 
 save_
 
-save_save_geom_angle.site_ssg_symmetry_1
+save_geom_angle.site_ssg_symmetry_1
 
     _definition.id               '_geom_angle.site_ssg_symmetry_1'
     _definition.update           2014-06-27
@@ -9046,9 +9046,9 @@ save_save_geom_angle.site_ssg_symmetry_1
     loop_
       _description_example.case
       _description_example.detail
-      "."                  'no symmetry or translation to site'          
-      "4"                  '4th symmetry operation applied'    
-      "7_645"              '7th symmetry position; +a on x, -b on y' 
+      .                  'no symmetry or translation to site'
+      4                  '4th symmetry operation applied'
+      7_645              '7th symmetry position; +a on x, -b on y'
 
 save_
 
