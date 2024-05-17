@@ -24,7 +24,7 @@ data_CIF_MS
     _dictionary.formalism        Modulated
     _dictionary.class            Instance
     _dictionary.version          3.2.1
-    _dictionary.date             2019-09-25
+    _dictionary.date             2024-05-15
     _dictionary.uri              http://www.iucr.org/cif/dic/cif_ms.dic
     _dictionary.ddl_conformance  3.13.1
     _dictionary.namespace        ModStruct
@@ -41,7 +41,7 @@ save_MS_GROUP
     _definition.id               MS_GROUP
     _definition.scope            Category
     _definition.class            Head
-    _definition.update           2012-11-20
+    _definition.update           2024-05-15
     _description.text                   
 ;
 
@@ -49,7 +49,10 @@ save_MS_GROUP
 ;
     _name.category_id            CIF_MS
     _name.object_id              MS_GROUP
-    _import.get                  [{"file":"cif_core.dic" "save":"CIF_CORE" "mode":"Full" "dupl":"Ignore"}]
+    _import.get
+        [
+         {'dupl':Ignore  'file':cif_core.dic  'mode':Full  'save':CIF_CORE_HEAD}
+        ]
 
 save_
 
@@ -12855,10 +12858,13 @@ loop_
      Returned all additional indices to main dictionary, removed category_id
      from templates(James Hester)
 ;
-         3.2.1    2019-09-25
+         3.2.1    2024-05-15
 ;
      Corrected a typo in the definition of the _geom_torsion.angle data item.
 
      Changed the content type of multiple data items from 'Count' to 'Integer'
      and assigned the appropriate enumeration range if needed.
+
+     Updated the CIF_CORE dictionary import statement with the new Head
+     category name.
 ;
