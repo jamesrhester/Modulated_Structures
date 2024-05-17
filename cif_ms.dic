@@ -43,8 +43,9 @@ save_CIF_MS_HEAD
     _definition.update           2024-05-17
     _description.text                   
 ;
-    The CIF_MS_HEAD category is the top-level category for all categories in
-    the CIF_MS dictionary.
+    The CIF_MS_HEAD category is the top-level category for all categories
+    in the CIF_MS dictionary. Head categories from other dictionaries are
+    reparented to this category.
 ;
     _name.category_id            CIF_MS
     _name.object_id              CIF_MS_HEAD
