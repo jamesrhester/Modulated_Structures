@@ -3343,7 +3343,7 @@ save_atom_site_displace_special_func.sawtooth_axyz
     _type.container               Matrix
     _type.dimension               '[3]'
     _type.contents                Real
-    _enumeration.default          [0.0,0.0,0.0]
+    _enumeration.default          [0.0 0.0 0.0]
     _units.code                   none
     _method.purpose               Evaluation
     _method.expression
@@ -3594,7 +3594,7 @@ save_atom_site_displace_special_func.zigzag_axyz
     _type.container               Matrix
     _type.dimension               '[3]'
     _type.contents                Real
-    _enumeration.default          [0.0,0.0,0.0]
+    _enumeration.default          [0.0 0.0 0.0]
     _units.code                   none
 
 save_
@@ -7248,7 +7248,7 @@ save_atom_site_rot_special_func.sawtooth_axyz
     _type.container               Matrix
     _type.dimension               '[3]'
     _type.contents                Real
-    _enumeration.default          [0.0,0.0,0.0]
+    _enumeration.default          [0.0 0.0 0.0]
     _units.code                   degrees
     _method.purpose               Evaluation
     _method.expression
@@ -7493,7 +7493,7 @@ save_atom_site_rot_special_func.zigzag_axyz
     _type.container               Matrix
     _type.dimension               '[3]'
     _type.contents                Real
-    _enumeration.default          [0.0,0.0,0.0]
+    _enumeration.default          [0.0 0.0 0.0]
     _units.code                   degrees
 
 save_
@@ -9069,8 +9069,9 @@ save_atom_sites_axes.matrix
     _type.dimension               '[3,3]'
     _type.contents                Real
     _enumeration.default          [
-                                   [1.0,0.0,0.0]  ,  [0.0,1.0,0.0]  ,
-                                   [0.0,0.0,1.0]
+                                   [1.0 0.0 0.0]
+                                   [0.0 1.0 0.0]
+                                   [0.0 0.0 1.0]
                                   ]
 
 save_
@@ -9825,7 +9826,9 @@ save_cell.commen_supercell_matrix
     _type.dimension               '[3,3]'
     _type.contents                Integer
     _enumeration.default          [
-                                   [1,0,0]  ,  [0,1,0]  ,  [0,0,1]
+                                   [1 0 0]
+                                   [0 1 0]
+                                   [0 0 1]
                                   ]
     _description_example.case
 ;
@@ -9840,7 +9843,7 @@ save_cell.commen_supercell_matrix
      _cell_wave_vector.z
      1  0.250000  0.000000 -0.250000
 
-    _cell.commen_supercell_matrix  [[1,0,-3],[0,1,0],[1,0,1]]
+    _cell.commen_supercell_matrix  [[1 0 -3] [0 1 0] [1 0 1]]
 
     # - - - - data truncated for brevity - - - -
 
